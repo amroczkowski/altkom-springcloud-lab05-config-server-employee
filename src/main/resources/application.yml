@@ -1,6 +1,8 @@
+---
 server:
   port: 8100
 spring:
+  config.activate.on-profile: instance1
   application:
     name: employee-service
 management:
@@ -11,3 +13,18 @@ management:
   endpoint:
     health:
       show-details: always
+---
+server:
+  port: 8101
+spring:
+  config.activate.on-profile: instance2
+  application:
+    name: employee-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        endpoint:
+          health:
+            show-details: always

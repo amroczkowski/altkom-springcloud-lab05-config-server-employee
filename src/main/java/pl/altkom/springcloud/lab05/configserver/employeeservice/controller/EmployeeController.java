@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import pl.altkom.springcloud.lab05.configserver.employeeservice.controller.model.CreateEmployeeRequest;
 import pl.altkom.springcloud.lab05.configserver.employeeservice.controller.model.Employee;
 import pl.altkom.springcloud.lab05.configserver.employeeservice.controller.model.UpdateEmployeeRequest;
 import pl.altkom.springcloud.lab05.configserver.employeeservice.service.EmployeeService;
 
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/employee")
 @RestController
@@ -32,11 +34,13 @@ public class EmployeeController {
 
     @GetMapping("/project/{projectId}")
     public List<Employee> getProjectEmployees(@PathVariable("projectId") final Long projectId) {
+        log.info("Getting project {} employees", projectId);
         return employeeService.getProjectEmployees(projectId);
     }
 
     @GetMapping("/{id}")
     public Employee getEmployee(@PathVariable("id") final Long id) {
+        log.info("Getting employee {}", id);
         return employeeService.getEmployee(id);
     }
 
